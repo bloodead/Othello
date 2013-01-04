@@ -1,23 +1,6 @@
 #include <gtk/gtk.h>
 #include <stdio.h>
-
-void	hello(GtkWidget* widget, gpointer data)
-{
-	(void) widget;
-	(void) data;
-	printf("HELLO WORLD\n");
-}
-
-static gboolean	delete_event(GtkWidget* widget, GdkEvent* event, gpointer data)
-{
-	(void) widget;
-	(void) event;
-	(void) data;
-	
-	printf("DELETE\n");
-
-	return TRUE;
-}
+#include "base.h"
 
 
 static void destroy(GtkWidget* widget, gpointer data)
@@ -27,12 +10,24 @@ static void destroy(GtkWidget* widget, gpointer data)
 	gtk_main_quit();
 }
 
-/*static void destroy2(GtkWidget* widget, gpointer data)
+static void hello(GtkWidget* widget, gpointer data)
 {
-	(void) widget;
-	(void) data;
-	gtk_main_quit();
-}*/
+         (void) widget;
+	int	i;
+	i = 10;
+	struct s_terrain	*terrain = data;
+         GdkColor        color;
+
+	gdk_color_parse ("white", &color);
+	 gtk_widget_modify_bg(GTK_WIDGET(widget), GTK_STATE_NORMAL, &color);
+	while (i != terrain->i)
+	{
+		printf("coucou\n");
+		terrain = terrain->next;
+	}
+	printf("terrain %d \n",terrain->i);
+}
+
 
 void	generated_platform(GtkWidget** hbox,GtkWidget* vbox, GtkWidget** button)
 {
@@ -79,23 +74,37 @@ int	main(int argc, char** argv)
 	(void)argc;
 	(void)argv;
 
+	int 	i;
+	i = 0;
+	
+	t_terrain	terrain;
 	GtkWidget*	window;
 	GtkWidget*	button[64];
 	GtkWidget*	vbox;
 	GtkWidget*	hbox[8];
 	GdkColor	color;
 
+
+	generate_coord(&terrain);
 	gdk_color_parse ("green", &color);
 	gtk_init(&argc, &argv);
 	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_default_size(GTK_WINDOW(window), 800, 800);
-	g_signal_connect(window, "delete-event", G_CALLBACK(delete_event),NULL);
 
 	generate_all_button(button, &color);
 	g_signal_connect(window, "destroy", G_CALLBACK(destroy),NULL);
-	gtk_container_set_border_width(GTK_CONTAINER(window), 50);
+	gtk_container_set_border_width(GTK_CONTAINER(window), 0);
 
-	g_signal_connect(button[1], "clicked", G_CALLBACK(hello),NULL);
+
+
+	while (i != 64)
+	{
+
+		g_signal_connect(button[i], "clicked", G_CALLBACK(hello),&terrain);
+		i = i + 1;
+	}
+
+
 
 	vbox = gtk_vbox_new(TRUE, 0);
 
