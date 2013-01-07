@@ -3,14 +3,11 @@
 #include <stdlib.h>
 #include "base.h"
 
-
-
 void	generate_coord(t_terrain* terrain)
 {
-	int i;
-	int x;
-	int y;
-
+	int	i;
+	int	x;
+	int	y;
 
 	i = 0;
 	y = 0;
@@ -29,6 +26,5 @@ void	generate_coord(t_terrain* terrain)
 			i = i + 1;
 		}
 		y = y + 1;
-		
 	}
 }
