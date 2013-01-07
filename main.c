@@ -22,10 +22,11 @@ void		assign_button_coord(GtkWidget* widget, t_terrain* terrain, int i)
 	terrain->button = widget;
 }
 
-static void	hello(GtkWidget* widget, gpointer data)
+static void	move(GtkWidget* widget, gpointer data)
 {
         (void)			widget;
 	struct s_terrain*	terrain = data;
+	t_terrain*	terrain_all = terrain;
         GdkColor		color;
 
 	gdk_color_parse ("white", &color);
@@ -35,6 +36,7 @@ static void	hello(GtkWidget* widget, gpointer data)
 		terrain = terrain->next;
 	}
 	printf("x:%d y:%d \n", terrain->x, terrain->y);
+	found_move(terrain,terrain_all);
 }
 
 void		generated_platform(GtkWidget** hbox,GtkWidget* vbox, GtkWidget** button)
@@ -63,12 +65,25 @@ void		generated_platform(GtkWidget** hbox,GtkWidget* vbox, GtkWidget** button)
 void		generate_all_button(GtkWidget** button,GdkColor* color)
 {
 	int	i;
+	GdkColor        white;
+	GdkColor        black;
+	GdkColor        blue;
 
+	gdk_color_parse ("black", &black);
+	gdk_color_parse ("white", &white);
+	gdk_color_parse ("blue", &blue);
+	
 	i = 0;
 	while (i != 64)
 	{
-		button[i] = gtk_button_new_with_label(" ");
-		gtk_widget_modify_bg(GTK_WIDGET(button[i]), GTK_STATE_NORMAL, color);
+		button[i] = gtk_button_new();
+		gtk_widget_modify_bg(GTK_WIDGET(button[i]), GTK_STATE_PRELIGHT, &blue);
+		if (i != 27 && i != 28 && i != 35 && i != 36)
+			gtk_widget_modify_bg(GTK_WIDGET(button[i]), GTK_STATE_NORMAL, color);
+		if (i == 27 || i == 36)
+			gtk_widget_modify_bg(GTK_WIDGET(button[i]), GTK_STATE_NORMAL, &white);
+		if (i == 35 || i == 28)
+			gtk_widget_modify_bg(GTK_WIDGET(button[i]), GTK_STATE_NORMAL, &black);
 		i = i + 1;	
 	}
 }
@@ -96,7 +111,7 @@ int		main(int argc, char** argv)
 	gtk_container_set_border_width(GTK_CONTAINER(window), 0);
 	while (i != 64)
 	{
-		g_signal_connect(button[i], "clicked", G_CALLBACK(hello), &terrain);
+		g_signal_connect(button[i], "clicked", G_CALLBACK(move), &terrain);
 		assign_button_coord(button[i], &terrain, i);
 		i = i + 1;
 	}
