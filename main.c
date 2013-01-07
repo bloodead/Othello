@@ -10,22 +10,31 @@ static void	destroy(GtkWidget* widget, gpointer data)
 	gtk_main_quit();
 }
 
+void		assign_button_coord(GtkWidget* widget, t_terrain* terrain, int i)
+{
+	int	a;
+
+	while (a != i)
+	{
+		terrain = terrain->next;
+		a = a + 1;
+	}
+	terrain->button = widget;
+}
+
 static void	hello(GtkWidget* widget, gpointer data)
 {
         (void)			widget;
-	int			i;
 	struct s_terrain*	terrain = data;
         GdkColor		color;
 
-	i = 10;
 	gdk_color_parse ("white", &color);
 	gtk_widget_modify_bg(GTK_WIDGET(widget), GTK_STATE_NORMAL, &color);
-	while (i != terrain->i)
+	while (widget != terrain->button)
 	{
-		printf("coucou\n");
 		terrain = terrain->next;
 	}
-	printf("terrain %d \n",terrain->i);
+	printf("x:%d y:%d \n", terrain->x, terrain->y);
 }
 
 void		generated_platform(GtkWidget** hbox,GtkWidget* vbox, GtkWidget** button)
@@ -58,7 +67,7 @@ void		generate_all_button(GtkWidget** button,GdkColor* color)
 	i = 0;
 	while (i != 64)
 	{
-		button[i] = gtk_button_new_with_label("J1");
+		button[i] = gtk_button_new_with_label(" ");
 		gtk_widget_modify_bg(GTK_WIDGET(button[i]), GTK_STATE_NORMAL, color);
 		i = i + 1;	
 	}
@@ -87,7 +96,8 @@ int		main(int argc, char** argv)
 	gtk_container_set_border_width(GTK_CONTAINER(window), 0);
 	while (i != 64)
 	{
-		g_signal_connect(button[i], "clicked", G_CALLBACK(hello),&terrain);
+		g_signal_connect(button[i], "clicked", G_CALLBACK(hello), &terrain);
+		assign_button_coord(button[i], &terrain, i);
 		i = i + 1;
 	}
 	vbox = gtk_vbox_new(TRUE, 0);
