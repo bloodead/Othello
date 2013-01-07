@@ -1,6 +1,7 @@
 NAME	=	gtk
 SRCS	=	main.c	\
-		terrain_coord.c
+		terrain_coord.c	\
+		move.c
 
 
 OBJS	=	$(SRCS:.c=.o)

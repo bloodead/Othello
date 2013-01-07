@@ -23,7 +23,7 @@ void	generate_coord(t_terrain* terrain)
 			terrain->color = 0;
 			if (i == 27 || i == 36)
 				terrain->color = 1;
-			if (i == 28 || i == 35)
+			if (i == 28 || i == 35 )
 				terrain->color = 2;
 			terrain = terrain->next;
 			x = x + 1;

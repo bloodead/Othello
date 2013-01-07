@@ -11,5 +11,13 @@ typedef struct	s_terrain
 	GtkWidget*		button;
 }		t_terrain;
 
+
+typedef struct s_convert_pion
+{
+	int	i;
+	struct	s_convert_pion*	next;
+}	t_convert_pion;
+
 void	generate_coord(t_terrain* terrain);
+void    found_move(t_terrain*   terrain, t_terrain* terrain_all);
 #endif

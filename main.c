@@ -27,10 +27,7 @@ static void	move(GtkWidget* widget, gpointer data)
         (void)			widget;
 	struct s_terrain*	terrain = data;
 	t_terrain*	terrain_all = terrain;
-        GdkColor		color;
 
-	gdk_color_parse ("white", &color);
-	gtk_widget_modify_bg(GTK_WIDGET(widget), GTK_STATE_NORMAL, &color);
 	while (widget != terrain->button)
 	{
 		terrain = terrain->next;
