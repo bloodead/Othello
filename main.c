@@ -27,15 +27,9 @@ static void	move(GtkWidget* widget, gpointer data)
         (void)			widget;
 	struct s_env_game*	game = data;
 	t_terrain*	terrain = game->terrain;
-	t_terrain*	terrain_all = game->terrain;
 
-	while (widget != terrain->button)
-	{
-		terrain = terrain->next;
-	}
-	//printf("x:%d y:%d \n", game->terrain->x, game->terrain->y);
-	verti_bas(terrain,terrain_all);
-	verti_haut(terrain,terrain_all);
+	//found_horizontal_black(terrain, widget);
+	found_horizontal_white(terrain, widget);
 }
 
 void		generated_platform(GtkWidget** hbox,GtkWidget* vbox, GtkWidget** button)
