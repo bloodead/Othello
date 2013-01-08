@@ -1,7 +1,8 @@
 NAME	=	gtk
 SRCS	=	main.c	\
 		terrain_coord.c	\
-		move.c
+		check_verti_haut.c	\
+		check_verti_bas.c
 
 
 OBJS	=	$(SRCS:.c=.o)

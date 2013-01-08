@@ -25,15 +25,17 @@ void		assign_button_coord(GtkWidget* widget, t_terrain* terrain, int i)
 static void	move(GtkWidget* widget, gpointer data)
 {
         (void)			widget;
-	struct s_terrain*	terrain = data;
-	t_terrain*	terrain_all = terrain;
+	struct s_env_game*	game = data;
+	t_terrain*	terrain = game->terrain;
+	t_terrain*	terrain_all = game->terrain;
 
 	while (widget != terrain->button)
 	{
 		terrain = terrain->next;
 	}
-	printf("x:%d y:%d \n", terrain->x, terrain->y);
-	found_move(terrain,terrain_all);
+	//printf("x:%d y:%d \n", game->terrain->x, game->terrain->y);
+	verti_bas(terrain,terrain_all);
+	verti_haut(terrain,terrain_all);
 }
 
 void		generated_platform(GtkWidget** hbox,GtkWidget* vbox, GtkWidget** button)
@@ -90,32 +92,43 @@ int		main(int argc, char** argv)
 	(void)		argc;
 	(void)		argv;
 	int 		i;
+	env_game	game;
 	t_terrain	terrain;
 	GtkWidget*	window;
+	GtkWidget*	info;
 	GtkWidget*	button[64];
 	GtkWidget*	vbox;
 	GtkWidget*	hbox[8];
 	GdkColor	color;
 
 	i = 0;
-	generate_coord(&terrain);
-	gdk_color_parse ("green", &color);
+	game.round = 0;
 	gtk_init(&argc, &argv);
+	generate_coord(&terrain);
+	game.terrain = &terrain;
+	gdk_color_parse ("green", &color);
 	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+	info = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_default_size(GTK_WINDOW(window), 800, 800);
+	gtk_window_set_default_size(GTK_WINDOW(info), 800, 200);
+	gtk_window_set_transient_for(GTK_WINDOW(info), GTK_WINDOW(window));
+
+	gtk_window_set_position(GTK_WINDOW(window),GTK_WIN_POS_CENTER); 
+	gtk_window_set_position(GTK_WINDOW(window),GTK_WIN_POS_CENTER_ON_PARENT); 
 	generate_all_button(button, &color);
 	g_signal_connect(window, "destroy", G_CALLBACK(destroy),NULL);
 	gtk_container_set_border_width(GTK_CONTAINER(window), 0);
 	while (i != 64)
 	{
-		g_signal_connect(button[i], "clicked", G_CALLBACK(move), &terrain);
-		assign_button_coord(button[i], &terrain, i);
+		g_signal_connect(button[i], "clicked", G_CALLBACK(move), &game);
+		assign_button_coord(button[i], game.terrain, i);
 		i = i + 1;
 	}
 	vbox = gtk_vbox_new(TRUE, 0);
 	generated_platform(hbox,vbox,button);
 	gtk_container_add(GTK_CONTAINER(window), GTK_WIDGET(vbox));
 	gtk_widget_show_all(window);
+	gtk_widget_show_all(info);
 	gtk_main();
 	return 0;
 }

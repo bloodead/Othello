@@ -18,6 +18,16 @@ typedef struct s_convert_pion
 	struct	s_convert_pion*	next;
 }	t_convert_pion;
 
+typedef struct	s_env_game
+{
+	int	round;
+	t_terrain*	terrain;
+	
+}	env_game;
+
 void	generate_coord(t_terrain* terrain);
-void    found_move(t_terrain*   terrain, t_terrain* terrain_all);
+void    verti_bas(t_terrain*   terrain, t_terrain* terrain_all);
+void    verti_haut(t_terrain*   terrain, t_terrain* terrain_all);
+void    white_to_black(t_convert_pion* convert, t_terrain* terrain,t_terrain* button);
+void    add_list_change(t_terrain* start, t_convert_pion* convert);
 #endif
