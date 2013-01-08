@@ -13,7 +13,7 @@ int	found_left_black(t_terrain* terrain, GtkWidget* button)
 	move = begin;
 	while (terrain->button != button)
 		terrain = terrain->next;
-	if (terrain->color == 0)
+	if (terrain->color == 0 && terrain->y >= 2)
 	{
 		while(move->next != terrain)
 			move = move->next;
@@ -36,7 +36,7 @@ int	found_right_black(t_terrain* terrain, GtkWidget* button)
 	count = 0;
 	while (terrain->button != button)
 		terrain = terrain->next;
-	if (terrain->color == 0)
+	if (terrain->color == 0 || terrain->y <= 5)
 	{
 		move = terrain->next;
 		while(move->color == 1)

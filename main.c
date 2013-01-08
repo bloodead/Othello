@@ -28,8 +28,8 @@ static void	move(GtkWidget* widget, gpointer data)
 	struct s_env_game*	game = data;
 	t_terrain*	terrain = game->terrain;
 
-	//found_horizontal_black(terrain, widget);
-	found_horizontal_white(terrain, widget);
+	found_horizontal_black(terrain, widget);
+	//found_horizontal_white(terrain, widget);
 }
 
 void		generated_platform(GtkWidget** hbox,GtkWidget* vbox, GtkWidget** button)

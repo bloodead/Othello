@@ -13,10 +13,8 @@ int	found_left_white(t_terrain* terrain, GtkWidget* button)
 	move = begin;
 	while (terrain->button != button)
 		terrain = terrain->next;
-	if (terrain->color == 0)
+	if (terrain->color == 0 && terrain->y >= 2)
 	{
-		if (terrain->x == 0 || terrain->y == 0)
-			return (count);
 		while(move->next != terrain)
 			move = move->next;
 		while(move->color == 2)
@@ -38,7 +36,7 @@ int	found_right_white(t_terrain* terrain, GtkWidget* button)
 	count = 0;
 	while (terrain->button != button)
 	terrain = terrain->next;
-	if (terrain->color == 0)
+	if (terrain->color == 0 || terrain->y <= 5)
 	{
 		move = terrain->next;
 		while(move->color == 2)
