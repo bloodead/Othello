@@ -12,10 +12,10 @@ int	check_for_black(t_terrain* terrain_tmp, t_terrain* button_p)
 		if (terrain_tmp->y == button_p->y - 1 && terrain_tmp->x == button_p->x)
 			if (terrain_tmp->color == 1)
 			return 1;
-		if (terrain_tmp->y == button_p->x + 1 && terrain_tmp->y == button_p->y)
+		if (terrain_tmp->x == button_p->x + 1 && terrain_tmp->y == button_p->y)
 			if (terrain_tmp->color == 1)
 			return 1;
-		if (terrain_tmp->y == button_p->x - 1 && terrain_tmp->y == button_p->y)
+		if (terrain_tmp->x == button_p->x - 1 && terrain_tmp->y == button_p->y)
 			if (terrain_tmp->color == 1)
 			return 1;
 		terrain_tmp = terrain_tmp->next;
@@ -59,7 +59,7 @@ int check_case(t_terrain* terrain, t_terrain*  button, int round)
 	else if (round % 2 == 1)
 	{
 		if (check_for_white(terrain_tmp, button_p))
-				printf("%d \n", found_horizontal_white(terrain, (GtkWidget*)button_p->button));
+				if (found_horizontal_white(terrain, (GtkWidget*)button_p->button))
 				return 1;
 	}
 

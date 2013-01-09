@@ -21,9 +21,9 @@ void	generate_coord(t_terrain* terrain)
 			terrain->x = x;
 			terrain->y = y;
 			terrain->color = 0;
-			if (i == 27 || i == 36 || i == 42 || i == 49 || i == 51 || i == 38)
+			if (i == 27 || i == 36)
 				terrain->color = 1;
-			if (i == 28 || i == 35 || i == 45 || i == 52)
+			if (i == 28 || i == 35)
 				terrain->color = 2;
 			terrain = terrain->next;
 			x = x + 1;
