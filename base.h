@@ -28,8 +28,9 @@ typedef struct	s_env_game
 void	generate_coord(t_terrain* terrain);
 void	found_horizontal_black(t_terrain* terrain, GtkWidget* button);
 void	found_horizontal_white(t_terrain* terrain, GtkWidget* button);
-void    verti_bas(t_terrain*   terrain, t_terrain* terrain_all);
-void    verti_haut(t_terrain*   terrain, t_terrain* terrain_all);
+int    verti_bas(t_terrain*   terrain, t_terrain* terrain_all);
+int    verti_haut(t_terrain*   terrain, t_terrain* terrain_all);
 void    white_to_black(t_convert_pion* convert, t_terrain* terrain,t_terrain* button);
 void    add_list_change(t_terrain* start, t_convert_pion* convert);
-#endif
+int	check_case(t_terrain* terrain, t_terrain* button,int round);
+#endif 

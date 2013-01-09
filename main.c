@@ -26,10 +26,27 @@ static void	move(GtkWidget* widget, gpointer data)
 {
         (void)			widget;
 	struct s_env_game*	game = data;
+	t_terrain*	terrain_all = game->terrain;
 	t_terrain*	terrain = game->terrain;
 
-	found_horizontal_black(terrain, widget);
-	//found_horizontal_white(terrain, widget);
+	while (terrain->button != widget)
+		terrain = terrain->next;
+	printf("BUTTON N %d \n",terrain->i);
+
+	if (check_case(terrain_all, terrain,game->round))
+	{
+		printf("DEBUG\n");
+		if (game->round % 2 == 0)
+		{
+			printf("LE NOIR JOUE\n");
+			game->round = game->round + 1;
+		}
+		else if (game->round % 2 == 1)
+		{
+			printf("LE BLANC JOUE\n");
+			game->round = game->round + 1;
+		}
+	}
 }
 
 void		generated_platform(GtkWidget** hbox,GtkWidget* vbox, GtkWidget** button)

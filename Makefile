@@ -4,7 +4,8 @@ SRCS	=	main.c	\
 		check_verti_haut.c	\
 		check_verti_bas.c	\
 		horizontal_black.c	\
-		horizontal_white.c
+		horizontal_white.c	\
+		check_case.c
 
 
 OBJS	=	$(SRCS:.c=.o)

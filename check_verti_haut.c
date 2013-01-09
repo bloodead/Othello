@@ -4,7 +4,7 @@
 #include "base.h"
 
 
-void	check_verti_haut(t_terrain* terrain, t_terrain* terrain_all, t_convert_pion* convert, int* i)
+int	check_verti_haut(t_terrain* terrain, t_terrain* terrain_all, t_convert_pion* convert, int* i)
 {
 	t_terrain*	start;
 	t_convert_pion*	start_convert;
@@ -21,16 +21,17 @@ void	check_verti_haut(t_terrain* terrain, t_terrain* terrain_all, t_convert_pion
 					{ 	
 						*i = terrain->y;
 						white_to_black(start_convert, terrain_all, terrain);
-						break;
+						return 1;
 					}
 					else if (start->color == 0)
 					{
 						*i = terrain->y;
-						break;
+						return 0;
 					}
 			}
 			start = start->next;
 		}
+	return 0;
 }
 
 
@@ -54,22 +55,24 @@ int	check_first_case(t_terrain* terrain, t_terrain* terrain_all, int* i)
 	return 1;
 }
 
-void	verti_haut(t_terrain*	terrain, t_terrain* terrain_all)
+int	verti_haut(t_terrain*	terrain, t_terrain* terrain_all)
 {
 	int	i;
+	int	ret;
 	t_convert_pion*	convert;
 
 	convert = malloc(sizeof(t_convert_pion));
 	i = 1;
-
+	ret = 0;
 	if (check_first_case(terrain, terrain_all, &i))
 		while (terrain->y - i != -1)
 		{
 			printf("passe\n");
-			check_verti_haut(terrain, terrain_all,convert,&i);
+			ret = check_verti_haut(terrain, terrain_all,convert,&i);
 			printf("DEBUG\n");
 
 			i = i + 1;
 		}
+	return ret;
 }
 
