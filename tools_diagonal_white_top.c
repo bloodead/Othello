@@ -53,6 +53,7 @@ void	capture_right_top_white(t_terrain* terrain, GtkWidget* button, int count)
 int	found_left_top_white(t_terrain* terrain, GtkWidget* button)
 {
 	int		count;
+	int		i;
 	t_terrain*	move;
 	t_terrain*	begin;
 
@@ -64,7 +65,7 @@ int	found_left_top_white(t_terrain* terrain, GtkWidget* button)
 		terrain = terrain->next;
 	if (terrain->color == 0 && terrain->y >= 2 && terrain->x >= 2)
 	{
-		while (move->x != terrain->x x - i || move->y != terrain->y - i)
+		while (move->x != terrain->x - i || move->y != terrain->y - i)
 			move = move->next;
 		while (move->color == 2)
 		{

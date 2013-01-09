@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "base.h"
 
-void	found_diagonal_white(t_terrain* terrain, GtkWidget* button)
+int	found_diagonal_white(t_terrain* terrain, GtkWidget* button)
 {
 	int	count;
 	int	count2;

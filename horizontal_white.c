@@ -105,5 +105,7 @@ int	found_horizontal_white(t_terrain* terrain, GtkWidget* button)
 	count2 = found_left_white(terrain, button);
 	if (count2 > 0)
 		left_capture_white(terrain, button, count2);
+	if (count == 0 && count2 > 0)
+		return 0;
 	return (1);
 } 
