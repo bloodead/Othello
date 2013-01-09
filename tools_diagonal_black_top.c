@@ -50,11 +50,11 @@ void	capture_right_top_black(t_terrain* terrain, GtkWidget* button, int count)
 	terrain->color = 2;
 }
 
-int	found_left_top_black(t_terrain* terrain, GtkWidget* button);
+int	found_left_top_black(t_terrain* terrain, GtkWidget* button)
 {
 	int		count;
 	t_terrain*	move;
-	t_terrain*		begin;
+	t_terrain*	begin;
 
 	i = 1;
 	begin = terrain;

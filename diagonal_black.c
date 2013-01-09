@@ -13,4 +13,7 @@ void	found_diagonal_black(t_terrain* terrain, GtkWidget* button)
 	count2 = found_left_top_black(terrain, button);
 	if(count2 != 0)
 		capture_left_top_black(terrain, button, count2);
+	if (count == 0 && count2 == 0)
+		return (0);
+	return (1);
 }

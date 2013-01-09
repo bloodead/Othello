@@ -29,8 +29,12 @@ void	generate_coord(t_terrain* terrain);
 
 int	found_right_top_black(t_terrain* terrain, GtkWidget* button);
 int	found_right_top_white(t_terrain* terrain, GtkWidget* button);
+int	found_left_top_black(t_terrain* terrain, GtkWidget* button);
+int	found_left_top_white(t_terrain* terrain, GtkWidget* button);
 void	capture_right_top_black(t_terrain* terrain, GtkWidget* button, int count);
 void	capture_right_top_white(t_terrain* terrain, GtkWidget* button, int count);
+void	capture_left_top_black(t_terrain* terrain, GtkWidget* button, int count);
+void	capture_left_top_white(t_terrain* terrain, GtkWidget* button, int count)
 void	found_diagonal_black(t_terrain* terrain, GtkWidget* button);
 void	found_diagonal_white(t_terrain* terrain, GtkWidget* button);
 
