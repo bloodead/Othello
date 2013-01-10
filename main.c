@@ -36,12 +36,12 @@ static void	move(GtkWidget* widget, gpointer data)
 	{
 		if (game->round % 2 == 0)
 		{
-			printf("LE NOIR JOUE\n");
+			gtk_label_set_text(GTK_LABEL(game->label), "AU BLANC DE JOUER");
 			game->round = game->round + 1;
 		}
 		else if (game->round % 2 == 1)
 		{
-			printf("LE BLANC JOUE\n");
+			gtk_label_set_text(GTK_LABEL(game->label), "AU NOIR DE JOUER");
 			game->round = game->round + 1;
 		}
 	}
@@ -53,9 +53,9 @@ void		generated_platform(GtkWidget** hbox, GtkWidget* vbox, GtkWidget** button)
 	int	j;
 	int	b;
 
-	i = 0;
+	i = 1;
 	b = 0;
-	while (i != 8)
+	while (i != 9)
 	{
 		hbox[i] = gtk_hbox_new(TRUE, 0);
 		j = 0;
@@ -103,10 +103,10 @@ int		main(int argc, char** argv)
 	env_game	game;
 	t_terrain	terrain;
 	GtkWidget*	window;
-	GtkWidget*	info;
 	GtkWidget*	button[64];
+	GtkWidget*	label;
 	GtkWidget*	vbox;
-	GtkWidget*	hbox[8];
+	GtkWidget*	hbox[9];
 	GdkColor	color;
 
 	i = 0;
@@ -116,13 +116,11 @@ int		main(int argc, char** argv)
 	game.terrain = &terrain;
 	gdk_color_parse ("green", &color);
 	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-	info = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_default_size(GTK_WINDOW(window), 800, 800);
-	gtk_window_set_default_size(GTK_WINDOW(info), 800, 200);
-	gtk_window_set_transient_for(GTK_WINDOW(info), GTK_WINDOW(window));
+
+	
 
 	gtk_window_set_position(GTK_WINDOW(window),GTK_WIN_POS_CENTER); 
-	gtk_window_set_position(GTK_WINDOW(window),GTK_WIN_POS_CENTER_ON_PARENT); 
 	generate_all_button(button, &color);
 	g_signal_connect(window, "destroy", G_CALLBACK(destroy),NULL);
 	gtk_container_set_border_width(GTK_CONTAINER(window), 0);
@@ -133,10 +131,17 @@ int		main(int argc, char** argv)
 		i = i + 1;
 	}
 	vbox = gtk_vbox_new(TRUE, 0);
+	
+
+	hbox[0] = gtk_hbox_new(TRUE, 0);
+	gtk_box_pack_start(GTK_BOX(vbox), hbox[0], TRUE, TRUE, 0);
+	label = gtk_label_new("COUCOU JOUEUR");
+	gtk_box_pack_start(GTK_BOX(hbox[0]), label, TRUE, TRUE, 0);
+	game.label =  label;
+
 	generated_platform(hbox,vbox,button);
 	gtk_container_add(GTK_CONTAINER(window), GTK_WIDGET(vbox));
 	gtk_widget_show_all(window);
-	gtk_widget_show_all(info);
 	gtk_main();
 	return (0);
 }
