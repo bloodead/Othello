@@ -2,11 +2,11 @@
 #include <stdio.h>
 #include "base.h"
 
-
 static void	destroy(GtkWidget* widget, gpointer data)
 {
 	(void)	widget;
 	(void)	data;
+
 	gtk_main_quit();
 }
 
@@ -31,9 +31,8 @@ static void	move(GtkWidget* widget, gpointer data)
 
 	while (terrain->button != widget)
 		terrain = terrain->next;
-	printf("BUTTON N %d \n",terrain->i);
-
-	if (check_case(terrain_all, terrain,game->round))
+	printf("BUTTON N %d \n", terrain->i);
+	if (check_case(terrain_all, terrain, game->round))
 	{
 		if (game->round % 2 == 0)
 		{
@@ -48,7 +47,7 @@ static void	move(GtkWidget* widget, gpointer data)
 	}
 }
 
-void		generated_platform(GtkWidget** hbox,GtkWidget* vbox, GtkWidget** button)
+void		generated_platform(GtkWidget** hbox, GtkWidget* vbox, GtkWidget** button)
 {
 	int	i;
 	int	j;
@@ -71,9 +70,9 @@ void		generated_platform(GtkWidget** hbox,GtkWidget* vbox, GtkWidget** button)
 	}
 }
 
-void		generate_all_button(GtkWidget** button,GdkColor* color)
+void		generate_all_button(GtkWidget** button, GdkColor* color)
 {
-	int	i;
+	int		i;
 	GdkColor        white;
 	GdkColor        black;
 	GdkColor        blue;
@@ -81,7 +80,6 @@ void		generate_all_button(GtkWidget** button,GdkColor* color)
 	gdk_color_parse ("black", &black);
 	gdk_color_parse ("white", &white);
 	gdk_color_parse ("blue", &blue);
-
 	i = 0;
 	while (i != 64)
 	{
@@ -140,5 +138,5 @@ int		main(int argc, char** argv)
 	gtk_widget_show_all(window);
 	gtk_widget_show_all(info);
 	gtk_main();
-	return 0;
+	return (0);
 }

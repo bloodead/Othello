@@ -50,9 +50,8 @@ void	capture_right_top_white(t_terrain* terrain, GtkWidget* button, int count)
 	terrain->color = 1;
 }
 
-int	found_left_top_white(t_terrain* terrain, GtkWidget* button)
+int	found_left_top_white(t_terrain* terrain, GtkWidget* button, int count)
 {
-	int		count;
 	int		i;
 	t_terrain*	move;
 	t_terrain*	begin;
@@ -60,7 +59,6 @@ int	found_left_top_white(t_terrain* terrain, GtkWidget* button)
 	i = 1;
 	begin = terrain;
 	move = begin;   
-	count = 0;
 	while (terrain->button != button)
 		terrain = terrain->next;
 	if (terrain->color == 0 && terrain->y >= 2 && terrain->x >= 2)
@@ -81,9 +79,8 @@ int	found_left_top_white(t_terrain* terrain, GtkWidget* button)
 	return (count);
 }
 
-int	found_right_top_white(t_terrain* terrain, GtkWidget* button)
+int	found_right_top_white(t_terrain* terrain, GtkWidget* button, int count)
 {
-	int		count;
 	int		i;
 	t_terrain*	move;
 	t_terrain*	begin;
@@ -91,7 +88,6 @@ int	found_right_top_white(t_terrain* terrain, GtkWidget* button)
 	i = 1;
 	begin = terrain;
 	move = begin;
-	count = 0;
 	while (terrain->button != button)
 		terrain = terrain->next;
 	if (terrain->color == 0 && terrain->y >= 2 && terrain->x <= 5)

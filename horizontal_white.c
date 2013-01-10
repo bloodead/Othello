@@ -100,11 +100,9 @@ int	found_horizontal_white(t_terrain* terrain, GtkWidget* button)
 	int	count2;
 
 	count = found_right_white(terrain, button);
-	printf("black droit %d \n", count);
 	if (count != 0)
 		right_capture_white(terrain, button, count);
 	count2 = found_left_white(terrain, button);
-	printf("black gauche %d \n", count2);
 	if (count2 > 0)
 		left_capture_white(terrain, button, count2);
 	if (count == 0 && count2 < 0)
