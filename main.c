@@ -1,4 +1,5 @@
 #include <gtk/gtk.h>
+#include <stdlib.h>
 #include <stdio.h>
 #include "base.h"
 
@@ -14,21 +15,23 @@ void		assign_button_coord(GtkWidget* widget, t_terrain* terrain, int i)
 {
 	int	a;
 
+	a = 0; 
 	while (a != i)
 	{
 		terrain = terrain->next;
 		a = a + 1;
 	}
+	printf("DEBUF\n");
 	terrain->button = widget;
 }
 
 static void	move(GtkWidget* widget, gpointer data)
 {
+
         (void)			widget;
 	struct s_env_game*	game = data;
 	t_terrain*	terrain_all = game->terrain;
 	t_terrain*	terrain = game->terrain;
-
 	while (terrain->button != widget)
 		terrain = terrain->next;
 	printf("BUTTON N %d \n", terrain->i);
@@ -101,47 +104,43 @@ int		main(int argc, char** argv)
 	(void)		argv;
 	int 		i;
 	env_game	game;
-	t_terrain	terrain;
-	GtkWidget*	window;
-	GtkWidget*	button[64];
-	GtkWidget*	label;
-	GtkWidget*	vbox;
-	GtkWidget*	hbox[9];
-	GdkColor	color;
+	GdkColor        color;
 
 	i = 0;
+	game.button = malloc(64 * sizeof(GtkWidget*));
 	game.round = 0;
+	game.terrain = malloc(sizeof(t_terrain));
+	game.hbox = malloc(9 * sizeof(GtkWidget*));
+	
 	gtk_init(&argc, &argv);
-	generate_coord(&terrain);
-	game.terrain = &terrain;
+	generate_coord(game.terrain);
 	gdk_color_parse ("green", &color);
-	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-	gtk_window_set_default_size(GTK_WINDOW(window), 800, 800);
+	game.window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+	gtk_window_set_default_size(GTK_WINDOW(game.window), 800, 800);
 
 	
 
-	gtk_window_set_position(GTK_WINDOW(window),GTK_WIN_POS_CENTER); 
-	generate_all_button(button, &color);
-	g_signal_connect(window, "destroy", G_CALLBACK(destroy),NULL);
-	gtk_container_set_border_width(GTK_CONTAINER(window), 0);
+	gtk_window_set_position(GTK_WINDOW(game.window),GTK_WIN_POS_CENTER); 
+	generate_all_button(game.button, &color);
+	g_signal_connect(game.window, "destroy", G_CALLBACK(destroy),NULL);
+	gtk_container_set_border_width(GTK_CONTAINER(game.window), 0);
 	while (i != 64)
 	{
-		g_signal_connect(button[i], "clicked", G_CALLBACK(move), &game);
-		assign_button_coord(button[i], game.terrain, i);
+		g_signal_connect(game.button[i], "clicked", G_CALLBACK(move), &game);
+		assign_button_coord(game.button[i], game.terrain, i);
 		i = i + 1;
 	}
-	vbox = gtk_vbox_new(TRUE, 0);
+	game.vbox = gtk_vbox_new(TRUE, 0);
 	
 
-	hbox[0] = gtk_hbox_new(TRUE, 0);
-	gtk_box_pack_start(GTK_BOX(vbox), hbox[0], TRUE, TRUE, 0);
-	label = gtk_label_new("COUCOU JOUEUR");
-	gtk_box_pack_start(GTK_BOX(hbox[0]), label, TRUE, TRUE, 0);
-	game.label =  label;
+	game.hbox[0] = gtk_hbox_new(TRUE, 0);
+	gtk_box_pack_start(GTK_BOX(game.vbox), game.hbox[0], TRUE, TRUE, 0);
+	game.label = gtk_label_new("COUCOU JOUEUR");
+	gtk_box_pack_start(GTK_BOX(game.hbox[0]), game.label, TRUE, TRUE, 0);
 
-	generated_platform(hbox,vbox,button);
-	gtk_container_add(GTK_CONTAINER(window), GTK_WIDGET(vbox));
-	gtk_widget_show_all(window);
+	generated_platform(game.hbox,game.vbox,game.button);
+	gtk_container_add(GTK_CONTAINER(game.window), GTK_WIDGET(game.vbox));
+	gtk_widget_show_all(game.window);
 	gtk_main();
 	return (0);
 }

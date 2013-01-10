@@ -11,6 +11,7 @@ void	generate_coord(t_terrain* terrain)
 
 	i = 0;
 	y = 0;
+//	terrain = malloc(sizeof(t_terrain));
 	while (i != 64)
 	{
 		x = 0;

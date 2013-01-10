@@ -22,6 +22,10 @@ typedef struct	s_env_game
 {
 	int		round;
 	GtkWidget*	label;
+	GtkWidget**	button;
+	GtkWidget**	hbox;
+	GtkWidget*      window;
+	GtkWidget*      vbox;
 	t_terrain*	terrain;
 	
 }		env_game;
