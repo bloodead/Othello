@@ -25,6 +25,7 @@ void	white_to_black(t_convert_pion* convert, t_terrain* terrain,t_terrain* butto
 		convert = convert->next;
 	}
 	gtk_widget_modify_bg(button->button, GTK_STATE_NORMAL, &black);
+	button->color = 2;
 }
 
 void	add_list_change(t_terrain* start, t_convert_pion* convert)

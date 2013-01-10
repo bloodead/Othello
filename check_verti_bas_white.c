@@ -24,7 +24,7 @@ void	black_to_white(t_convert_pion* convert, t_terrain* terrain,t_terrain* butto
 		convert = convert->next;
 	}
 	gtk_widget_modify_bg(button->button, GTK_STATE_NORMAL, &white);
-
+	button->color = 1;
 }
 
 int	check_first_case_bas_white(t_terrain* terrain, t_terrain* terrain_all, int* i)
