@@ -104,7 +104,6 @@ int	verti_bas(t_terrain*	terrain, t_terrain* terrain_all)
 	if (check_first_case_bas(terrain, terrain_all, &i))
 		while (terrain->y + i != 8)
 		{
-			printf("passe\n");
 			ret = check_verti_bas(terrain, terrain_all,convert,&i);
 			i = i + 1;
 		}

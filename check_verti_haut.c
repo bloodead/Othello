@@ -67,10 +67,7 @@ int	verti_haut(t_terrain*	terrain, t_terrain* terrain_all)
 	if (check_first_case(terrain, terrain_all, &i))
 		while (terrain->y - i != -1)
 		{
-			printf("passe\n");
 			ret = check_verti_haut(terrain, terrain_all,convert,&i);
-			printf("DEBUG\n");
-
 			i = i + 1;
 		}
 	return ret;

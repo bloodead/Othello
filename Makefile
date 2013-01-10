@@ -11,6 +11,8 @@ SRCS	=	main.c				\
 		diagonal_white.c		\
 		tools_diagonal_black_top.c	\
 		tools_diagonal_white_top.c	\
+		tools_diagonal_black_bot.c	\
+		tools_diagonal_white_bot.c	\
 		check_end_line.c		\
 		check_case.c
 

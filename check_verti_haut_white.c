@@ -67,9 +67,7 @@ int	verti_haut_white(t_terrain*	terrain, t_terrain* terrain_all)
 	if (check_first_case_white(terrain, terrain_all, &i))
 		while (terrain->y - i != -1)
 		{
-			printf("passe\n");
 			ret = check_verti_haut_white(terrain, terrain_all,convert,&i);
-			printf("DEBUG\n");
 
 			i = i + 1;
 		}

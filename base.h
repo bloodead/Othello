@@ -27,14 +27,24 @@ typedef struct	s_env_game
 
 void	generate_coord(t_terrain* terrain);
 
-int	found_right_top_black(t_terrain* terrain, GtkWidget* button);
-int	found_right_top_white(t_terrain* terrain, GtkWidget* button);
-int	found_left_top_black(t_terrain* terrain, GtkWidget* button);
-int	found_left_top_white(t_terrain* terrain, GtkWidget* button);
+int	found_right_top_black(t_terrain* terrain, GtkWidget* button, int count);
+int	found_right_top_white(t_terrain* terrain, GtkWidget* button, int count);
+int	found_left_top_black(t_terrain* terrain, GtkWidget* button, int count);
+int	found_left_top_white(t_terrain* terrain, GtkWidget* button, int count);
 void	capture_right_top_black(t_terrain* terrain, GtkWidget* button, int count);
 void	capture_right_top_white(t_terrain* terrain, GtkWidget* button, int count);
 void	capture_left_top_black(t_terrain* terrain, GtkWidget* button, int count);
 void	capture_left_top_white(t_terrain* terrain, GtkWidget* button, int count);
+
+int	found_right_bot_black(t_terrain* terrain, GtkWidget* button, int count)
+int	found_right_bot_white(t_terrain* terrain, GtkWidget* button, int count)
+int	found_left_bot_black(t_terrain* terrain, GtkWidget* button, int count)
+int	found_left_bot_white(t_terrain* terrain, GtkWidget* button, int count)
+void	capture_right_bot_black(t_terrain* terrain, GtkWidget* button, int count)
+void	capture_right_bot_white(t_terrain* terrain, GtkWidget* button, int count)
+void	capture_left_bot_black(t_terrain* terrain, GtkWidget* button, int count)
+void	capture_left_bot_white(t_terrain* terrain, GtkWidget* button, int count)
+
 int	found_diagonal_black(t_terrain* terrain, GtkWidget* button);
 int	found_diagonal_white(t_terrain* terrain, GtkWidget* button);
 

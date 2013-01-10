@@ -59,18 +59,15 @@ int check_case(t_terrain* terrain, t_terrain*  button, int round)
 	{
 		if (check_for_black(terrain_tmp, button_p))
 				if(verti_haut(button, terrain) || verti_bas(button, terrain)
-				   || found_horizontal_black(terrain, (GtkWidget*)button_p->button))
-					return 1;
+				   || found_horizontal_black(terrain, (GtkWidget*)button_p->button))		
+					return (1);
 	}
 	else if (round % 2 == 1)
 	{
 		if (check_for_white(terrain_tmp, button_p))
 				if (verti_haut_white(button, terrain) || verti_bas_white(button, terrain)
-				    ||found_horizontal_white(terrain, (GtkWidget*)button_p->button))
-				return 1;
+				    || found_horizontal_white(terrain, (GtkWidget*)button_p->button))
+					return (1);
 	}
-
-   printf("PASSE ICI \n");
 	return 0;
-
 }

@@ -35,7 +35,6 @@ static void	move(GtkWidget* widget, gpointer data)
 
 	if (check_case(terrain_all, terrain,game->round))
 	{
-		printf("DEBUG\n");
 		if (game->round % 2 == 0)
 		{
 			printf("LE NOIR JOUE\n");
