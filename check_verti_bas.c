@@ -13,7 +13,7 @@ void	white_to_black(t_convert_pion* convert, t_terrain* terrain,t_terrain* butto
 	while (convert->next !=  0)
 	{
 		start = terrain;
-		while (start != 0)
+		while (start  != 0)
 		{
 			if (convert->i == start->i)
 			{
@@ -29,7 +29,12 @@ void	white_to_black(t_convert_pion* convert, t_terrain* terrain,t_terrain* butto
 }
 
 void	add_list_change(t_terrain* start, t_convert_pion* convert)
-{
+{		
+	printf("BUG \n");
+	while (convert->next != 0)
+	{
+		convert = convert->next;
+	}
 	convert->i = start->i;
 	convert->next = malloc(sizeof(struct s_convert_pion));
 	convert = convert->next;
@@ -68,7 +73,9 @@ int	check_verti_bas(t_terrain* terrain, t_terrain* terrain_all, t_convert_pion* 
 		if (terrain->x == start->x && terrain->y + *i == start->y)
 		{
 				if (start->color == 1)
+				{	
 					add_list_change(start, convert);
+				}
 				else if (start->color == 2)
 				{ 	
 					*i = 7 - terrain->y;
@@ -84,6 +91,19 @@ int	check_verti_bas(t_terrain* terrain, t_terrain* terrain_all, t_convert_pion* 
 		start = start->next;
 	}
 	return (0);
+}
+
+void	free_convert(t_convert_pion* convert)
+{
+	t_convert_pion*	convert_tmp;
+
+	while (convert == 0)
+	{
+		convert_tmp = convert->next;
+		free(convert);
+		convert = convert_tmp;
+	}
+	printf("free\n");
 }
 
 int	verti_bas(t_terrain* terrain, t_terrain* terrain_all)
@@ -103,5 +123,7 @@ int	verti_bas(t_terrain* terrain, t_terrain* terrain_all)
 			i = i + 1;
 		}
 	}
+		free_convert(convert);
+		free(convert);
 	return (ret);
 }

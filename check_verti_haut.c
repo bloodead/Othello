@@ -15,7 +15,9 @@ int	check_verti_haut(t_terrain* terrain, t_terrain* terrain_all, t_convert_pion*
 		if (terrain->x == start->x && terrain->y - *i == start->y)
 		{
 				if (start->color == 1)
+				{	
 					add_list_change(start, convert);
+				}
 				else if (start->color == 2)
 				{ 	
 					*i = terrain->y;
@@ -59,16 +61,15 @@ int	verti_haut(t_terrain* terrain, t_terrain* terrain_all)
 	int		ret;
 	t_convert_pion*	convert;
 
-	convert = malloc(sizeof(t_convert_pion));
 	i = 1;
+	convert = malloc(sizeof(t_convert_pion));
 	ret = 0;
-	if (check_first_case(terrain, terrain_all, &i))
-	{
 		while (terrain->y - i != -1)
 		{
 			ret = check_verti_haut(terrain, terrain_all,convert,&i);
 			i = i + 1;
 		}
-	}
+	free_convert(convert);
+	free(convert);
 	return (ret);
 }

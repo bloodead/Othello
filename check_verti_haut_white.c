@@ -71,5 +71,8 @@ int	verti_haut_white(t_terrain* terrain, t_terrain* terrain_all)
 			i = i + 1;
 		}
 	}
+		free_convert(convert);
+	free(convert);
+	
 	return (ret);
 }
