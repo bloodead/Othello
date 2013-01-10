@@ -102,42 +102,21 @@ int		main(int argc, char** argv)
 {
 	(void)		argc;
 	(void)		argv;
-	int 		i;
 	env_game	game;
 	GdkColor        color;
-
-	i = 0;
-	game.button = malloc(64 * sizeof(GtkWidget*));
-	game.round = 0;
-	game.terrain = malloc(sizeof(t_terrain));
-	game.hbox = malloc(9 * sizeof(GtkWidget*));
 	
 	gtk_init(&argc, &argv);
-	generate_coord(game.terrain);
+	init_game(&game);
 	gdk_color_parse ("green", &color);
-	game.window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-	gtk_window_set_default_size(GTK_WINDOW(game.window), 800, 800);
-
-	
-
 	gtk_window_set_position(GTK_WINDOW(game.window),GTK_WIN_POS_CENTER); 
 	generate_all_button(game.button, &color);
 	g_signal_connect(game.window, "destroy", G_CALLBACK(destroy),NULL);
-	gtk_container_set_border_width(GTK_CONTAINER(game.window), 0);
-	while (i != 64)
+	while (game.i != 64)
 	{
-		g_signal_connect(game.button[i], "clicked", G_CALLBACK(move), &game);
-		assign_button_coord(game.button[i], game.terrain, i);
-		i = i + 1;
+		g_signal_connect(game.button[game.i], "clicked", G_CALLBACK(move), &game);
+		assign_button_coord(game.button[game.i], game.terrain, game.i);
+		game.i = game.i + 1;
 	}
-	game.vbox = gtk_vbox_new(TRUE, 0);
-	
-
-	game.hbox[0] = gtk_hbox_new(TRUE, 0);
-	gtk_box_pack_start(GTK_BOX(game.vbox), game.hbox[0], TRUE, TRUE, 0);
-	game.label = gtk_label_new("COUCOU JOUEUR");
-	gtk_box_pack_start(GTK_BOX(game.hbox[0]), game.label, TRUE, TRUE, 0);
-
 	generated_platform(game.hbox,game.vbox,game.button);
 	gtk_container_add(GTK_CONTAINER(game.window), GTK_WIDGET(game.vbox));
 	gtk_widget_show_all(game.window);

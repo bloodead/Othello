@@ -21,6 +21,7 @@ typedef struct	s_convert_pion
 typedef struct	s_env_game
 {
 	int		round;
+	int		i;
 	GtkWidget*	label;
 	GtkWidget**	button;
 	GtkWidget**	hbox;
@@ -62,5 +63,5 @@ void	black_to_white(t_convert_pion* convert, t_terrain* terrain,t_terrain* butto
 void	add_list_change(t_terrain* start, t_convert_pion* convert);
 int	check_case(t_terrain* terrain, t_terrain*  button, int round);
 void    free_convert(t_convert_pion* convert);
-
+void    init_game(env_game* game);
 #endif

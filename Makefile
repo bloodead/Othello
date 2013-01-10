@@ -1,5 +1,6 @@
 NAME	=	gtk
 SRCS	=	main.c				\
+		init.c				\
 		terrain_coord.c			\
 		check_verti_haut.c		\
 		check_verti_haut_white.c	\
