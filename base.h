@@ -35,6 +35,7 @@ void	assign_button_coord(GtkWidget* widget, t_terrain* terrain, int i);
 void	generated_platform(GtkWidget** hbox, GtkWidget* vbox, GtkWidget** button);
 void	generate_all_button(GtkWidget** button, GdkColor* color);
 void	generate_coord(t_terrain* terrain);
+int	found_vertical_black(t_terrain* terrain, GtkWidget* button);
 int	check_global_black(t_terrain* terrain, t_terrain* button, int count);
 int	check_global_white(t_terrain* terrain, t_terrain* button, int count);
 int	check_for_black(t_terrain* terrain_tmp, t_terrain* button_p, int count);

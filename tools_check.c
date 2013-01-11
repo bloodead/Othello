@@ -39,7 +39,7 @@ int	check_global_black(t_terrain* terrain, t_terrain* button, int count)
 	{
 		while (count != 0)
 		{
-			if(verti_haut(button, terrain) || verti_bas(button, terrain)
+			if (found_vertical_black(terrain, (GtkWidget*)button->button)
 			   || found_horizontal_black(terrain, (GtkWidget*)button->button)
 			   || found_diagonal_black(terrain, (GtkWidget*)button->button))
 			{

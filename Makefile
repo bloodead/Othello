@@ -8,6 +8,7 @@ SRCS	=	main.c				\
 		check_verti_bas.c		\
 		horizontal_black.c		\
 		horizontal_white.c		\
+		vertical_black.c		\
 		diagonal_black.c		\
 		diagonal_white.c		\
 		tools_diagonal_black_top.c	\
