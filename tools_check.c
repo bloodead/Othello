@@ -12,7 +12,7 @@ int	check_global_white(t_terrain* terrain, t_terrain* button, int count)
 	{
 		while (count != 0)
 		{
-			if (verti_haut_white(button, terrain) || verti_bas_white(button, terrain)
+			if (found_vertical_white(terrain, (GtkWidget*)button->button)
 			    || found_horizontal_white(terrain, (GtkWidget*)button->button)
 			    || found_diagonal_white(terrain, (GtkWidget*)button->button))
 			{

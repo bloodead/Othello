@@ -11,13 +11,6 @@ typedef struct	s_terrain
 	GtkWidget*		button;
 }		t_terrain;
 
-
-typedef struct	s_convert_pion
-{
-	int			i;
-	struct	s_convert_pion*	next;
-}		t_convert_pion;
-
 typedef struct	s_env_game
 {
 	int		round;
@@ -36,6 +29,7 @@ void	generated_platform(GtkWidget** hbox, GtkWidget* vbox, GtkWidget** button);
 void	generate_all_button(GtkWidget** button, GdkColor* color);
 void	generate_coord(t_terrain* terrain);
 int	found_vertical_black(t_terrain* terrain, GtkWidget* button);
+int	found_vertical_white(t_terrain* terrain, GtkWidget* button);
 int	check_global_black(t_terrain* terrain, t_terrain* button, int count);
 int	check_global_white(t_terrain* terrain, t_terrain* button, int count);
 int	check_for_black(t_terrain* terrain_tmp, t_terrain* button_p, int count);
@@ -65,14 +59,6 @@ int	check_end_black(t_terrain* move);
 int	check_end_white(t_terrain* move);
 int	found_horizontal_black(t_terrain* terrain, GtkWidget* button);
 int	found_horizontal_white(t_terrain* terrain, GtkWidget* button);
-int	verti_bas(t_terrain*   terrain, t_terrain* terrain_all);
-int	verti_haut(t_terrain*   terrain, t_terrain* terrain_all);
-int	verti_bas_white(t_terrain*   terrain, t_terrain* terrain_all);
-int	verti_haut_white(t_terrain*   terrain, t_terrain* terrain_all);
-void	white_to_black(t_convert_pion* convert, t_terrain* terrain,t_terrain* button);
-void	black_to_white(t_convert_pion* convert, t_terrain* terrain,t_terrain* button);
-void	add_list_change(t_terrain* start, t_convert_pion* convert);
 int	check_case(t_terrain* terrain, t_terrain*  button, int round);
-void    free_convert(t_convert_pion* convert);
 void    init_game(env_game* game);
 #endif
