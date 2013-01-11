@@ -42,10 +42,12 @@ int	check_case(t_terrain* terrain, t_terrain* button, int round)
 		if (round % 2 == 0)
 		{
 			count = check_global_black(terrain, button_p, 0);
+			printf("count noir %d\n", count);
 		}
 		else if (round % 2 == 1)
 		{
 			count = check_global_white(terrain, button_p, 0);
+			printf("count blanc %d\n", count);
 		}
 			if (count > 0)
 				return (1);

@@ -25,7 +25,7 @@ int	found_diagonal_white(t_terrain* terrain, GtkWidget* button)
 	count4 = found_left_bot_white(terrain, button, count4);
 	if (count4 != 0)
 		capture_left_bot_white(terrain, button, count4);
-	if (count == 0 && count2 == 0 && count3 == 0 && count == 4)
+	if (count == 0 && count2 == 0 && count3 == 0 && count4 == 0)
 		return (0);
 	return (1);
 }

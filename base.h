@@ -31,6 +31,9 @@ typedef struct	s_env_game
 	
 }		env_game;
 
+void	assign_button_coord(GtkWidget* widget, t_terrain* terrain, int i);
+void	generated_platform(GtkWidget** hbox, GtkWidget* vbox, GtkWidget** button);
+void	generate_all_button(GtkWidget** button, GdkColor* color);
 void	generate_coord(t_terrain* terrain);
 int	check_global_black(t_terrain* terrain, t_terrain* button, int count);
 int	check_global_white(t_terrain* terrain, t_terrain* button, int count);

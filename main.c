@@ -11,27 +11,16 @@ static void	destroy(GtkWidget* widget, gpointer data)
 	gtk_main_quit();
 }
 
-void		assign_button_coord(GtkWidget* widget, t_terrain* terrain, int i)
-{
-	int	a;
-
-	a = 0; 
-	while (a != i)
-	{
-		terrain = terrain->next;
-		a = a + 1;
-	}
-	printf("DEBUF\n");
-	terrain->button = widget;
-}
-
 static void	move(GtkWidget* widget, gpointer data)
 {
 
-        (void)			widget;
-	struct s_env_game*	game = data;
-	t_terrain*	terrain_all = game->terrain;
-	t_terrain*	terrain = game->terrain;
+	struct s_env_game*	game;
+	t_terrain*		terrain_all;
+	t_terrain*		terrain;
+
+	game = data;	
+	terrain_all = game->terrain;
+	terrain = game->terrain;
 	while (terrain->button != widget)
 		terrain = terrain->next;
 	printf("BUTTON N %d \n", terrain->i);
@@ -48,54 +37,6 @@ static void	move(GtkWidget* widget, gpointer data)
 			gtk_label_set_text(GTK_LABEL(game->label), "AU NOIR DE JOUER");
 			game->round = game->round + 1;
 		}
-	}
-}
-
-void		generated_platform(GtkWidget** hbox, GtkWidget* vbox, GtkWidget** button)
-{
-	int	i;
-	int	j;
-	int	b;
-
-	i = 1;
-	b = 0;
-	while (i != 9)
-	{
-		hbox[i] = gtk_hbox_new(TRUE, 0);
-		j = 0;
-		while (j != 8)
-		{
-			gtk_box_pack_start(GTK_BOX(hbox[i]), button[b], TRUE, TRUE, 0);
-			j = j + 1;
-			b = b + 1;
-		}
-		gtk_box_pack_start(GTK_BOX(vbox), hbox[i], TRUE, TRUE, 0);
-		i = i + 1;
-	}
-}
-
-void		generate_all_button(GtkWidget** button, GdkColor* color)
-{
-	int		i;
-	GdkColor        white;
-	GdkColor        black;
-	GdkColor        blue;
-
-	gdk_color_parse ("black", &black);
-	gdk_color_parse ("white", &white);
-	gdk_color_parse ("blue", &blue);
-	i = 0;
-	while (i != 64)
-	{
-		button[i] = gtk_button_new();
-		gtk_widget_modify_bg(GTK_WIDGET(button[i]), GTK_STATE_PRELIGHT, &blue);
-		if (i != 27 && i != 28 && i != 35 && i != 36)
-			gtk_widget_modify_bg(GTK_WIDGET(button[i]), GTK_STATE_NORMAL, color);
-		if (i == 27 || i == 36)
-			gtk_widget_modify_bg(GTK_WIDGET(button[i]), GTK_STATE_NORMAL, &white);
-		if (i == 35 || i == 28)
-			gtk_widget_modify_bg(GTK_WIDGET(button[i]), GTK_STATE_NORMAL, &black);
-		i = i + 1;	
 	}
 }
 
