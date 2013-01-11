@@ -2,49 +2,57 @@
 #include <stdio.h>
 #include "base.h"
 
-int	found_left_black(t_terrain* terrain, GtkWidget* button)
+int	found_left_black(t_terrain* terrain, GtkWidget* button, int count)
 {
-	int		count;
+	int		i;
 	t_terrain*	move;
 	t_terrain*	begin;
 
-	count = 0;
+	i = 1;
 	begin = terrain;
 	move = begin;
 	while (terrain->button != button)
 		terrain = terrain->next;
 	if (terrain->color == 0 && terrain->x >= 2)
 	{
-		while(move->next != terrain)
+		while(move->x != terrain->x - i || move->y != terrain->y)
 			move = move->next;
 		while(move->color == 1)
 		{
 			move = begin;
-			while (move->x != terrain->x - (1 + count) || move->y != terrain->y)
+			while (move->x != terrain->x - i || move->y != terrain->y)
 				move = move->next;
 			count = count + 1;
+			i = i + 1;
 		}
 	}
 	if (check_end_black(move) == 0)
-		return (-1);
-	return (count - 1);
+		return (0);
+	return (count);
 }
 
-int	found_right_black(t_terrain* terrain, GtkWidget* button)
+int	found_right_black(t_terrain* terrain, GtkWidget* button, int count)
 {
-	int		count;
+	int		i;
+	t_terrain*	begin;
 	t_terrain*	move;
 
-	count = 0;
+	i = 1;
+	begin = terrain;
+	move = begin;
 	while (terrain->button != button)
 		terrain = terrain->next;
-	if (terrain->color == 0 || terrain->x <= 5)
+	if (terrain->color == 0 && terrain->x <= 5)
 	{
-		move = terrain->next;
+		while(move->x != terrain->x + i || move->y != terrain->y)
+			move = move->next;
 		while(move->color == 1)
 		{
-			move = move->next;
+			move = begin;
+			while (move->x != terrain->x + i || move->y != terrain->y)
+				move = move->next;
 			count = count + 1;
+			i = i + 1;
 		}
 	}
 	if (check_end_black(move) == 0)
@@ -99,13 +107,13 @@ int	found_horizontal_black(t_terrain* terrain, GtkWidget* button)
 	int	count;
 	int	count2;
 
-	count = found_right_black(terrain, button);
+	count = found_right_black(terrain, button, 0);
 	if (count != 0)
 		right_capture_black(terrain, button, count);
-	count2 = found_left_black(terrain, button);
-	if (count2 > 0)
+	count2 = found_left_black(terrain, button, 0);
+	if (count2 != 0)
 		left_capture_black(terrain, button, count2);
-	if (count == 0 && count2 < 0)
+	if (count == 0 && count2 == 0)
 		return (0);
 	return (1);
 }

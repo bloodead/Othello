@@ -13,9 +13,9 @@ int	check_global_white(t_terrain* terrain, t_terrain* button, int count)
 		while (count != 0)
 		{
 			if (found_vertical_white(terrain, (GtkWidget*)button->button)
-			    || found_horizontal_white(terrain, (GtkWidget*)button->button)
-			    || found_diagonal_white(terrain, (GtkWidget*)button->button))
+			    || found_horizontal_white(terrain, (GtkWidget*)button->button))
 			{
+				printf("pass funk %d\n", count);
 				count = count - 1;
 				i = i + 1;
 				button->color = 0;
@@ -26,6 +26,7 @@ int	check_global_white(t_terrain* terrain, t_terrain* button, int count)
 		if (i > 0)
 			button->color = 1;
 	}
+	printf("fonctions lignes blanches executees %d\n", i);
 	return (i);
 }
 
@@ -40,9 +41,9 @@ int	check_global_black(t_terrain* terrain, t_terrain* button, int count)
 		while (count != 0)
 		{
 			if (found_vertical_black(terrain, (GtkWidget*)button->button)
-			   || found_horizontal_black(terrain, (GtkWidget*)button->button)
-			   || found_diagonal_black(terrain, (GtkWidget*)button->button))
+			   || found_horizontal_black(terrain, (GtkWidget*)button->button))
 			{
+				printf("pass funk %d\n", count);
 				count = count - 1;
 				i = i + 1;
 				button->color = 0;
@@ -53,6 +54,7 @@ int	check_global_black(t_terrain* terrain, t_terrain* button, int count)
 		if (i > 0)
 			button->color = 2;
 	}
+	printf("fonctions lignes noires executees %d\n", i);
 	return (i);
 }
 

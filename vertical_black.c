@@ -42,7 +42,7 @@ int	found_top_black(t_terrain* terrain, GtkWidget* button, int count)
 	move = begin;
 	while (terrain->button != button)
 		terrain = terrain->next;
-	if (terrain->color == 0 || terrain->y >= 2)
+	if (terrain->color == 0 && terrain->y >= 2)
 	{
 		while (move->x != terrain->x || move->y != terrain->y - i)
 			move = move->next;

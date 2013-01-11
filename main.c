@@ -49,7 +49,7 @@ int		main(int argc, char** argv)
 	
 	gtk_init(&argc, &argv);
 	init_game(&game);
-	gdk_color_parse ("green", &color);
+	gdk_color_parse ("brown", &color);
 	gtk_window_set_position(GTK_WINDOW(game.window),GTK_WIN_POS_CENTER); 
 	generate_all_button(game.button, &color);
 	g_signal_connect(game.window, "destroy", G_CALLBACK(destroy),NULL);
