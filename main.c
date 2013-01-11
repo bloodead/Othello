@@ -37,6 +37,7 @@ static void	move(GtkWidget* widget, gpointer data)
 	printf("BUTTON N %d \n", terrain->i);
 	if (check_case(terrain_all, terrain, game->round))
 	{
+		printf("couleur bouton apres %d\n", terrain->color);
 		if (game->round % 2 == 0)
 		{
 			gtk_label_set_text(GTK_LABEL(game->label), "AU BLANC DE JOUER");

@@ -32,6 +32,13 @@ typedef struct	s_env_game
 }		env_game;
 
 void	generate_coord(t_terrain* terrain);
+int	check_global_black(t_terrain* terrain, t_terrain* button, int count);
+int	check_global_white(t_terrain* terrain, t_terrain* button, int count);
+int	check_for_black(t_terrain* terrain_tmp, t_terrain* button_p, int count);
+int	check_for_white(t_terrain* terrain_tmp, t_terrain* button_p, int count);
+int	check_diagonal(t_terrain* terrain_tmp, t_terrain* button_p, int count, int color);
+int	check_vertical(t_terrain* terrain_tmp, t_terrain* button_p, int count, int color);
+int	check_horizontal(t_terrain* terrain_tmp, t_terrain* button_p, int count, int color);
 int	found_right_top_black(t_terrain* terrain, GtkWidget* button, int count);
 int	found_right_top_white(t_terrain* terrain, GtkWidget* button, int count);
 int	found_left_top_black(t_terrain* terrain, GtkWidget* button, int count);
