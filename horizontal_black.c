@@ -15,13 +15,17 @@ int	found_left_black(t_terrain* terrain, GtkWidget* button, int count)
 		terrain = terrain->next;
 	if (terrain->color == 0 && terrain->x >= 2)
 	{
-		while(move->x != terrain->x - i || move->y != terrain->y)
+		while(move->next != 0 && (move->x != terrain->x - i || move->y != terrain->y))
 			move = move->next;
 		while(move->color == 1)
 		{
 			move = begin;
 			while (move->x != terrain->x - i || move->y != terrain->y)
+			{
 				move = move->next;
+				if (move->next == 0)
+					break;
+			}
 			count = count + 1;
 			i = i + 1;
 		}
@@ -44,12 +48,12 @@ int	found_right_black(t_terrain* terrain, GtkWidget* button, int count)
 		terrain = terrain->next;
 	if (terrain->color == 0 && terrain->x <= 5)
 	{
-		while(move->x != terrain->x + i || move->y != terrain->y)
+		while(move->next != 0 && (move->x != terrain->x + i || move->y != terrain->y))
 			move = move->next;
 		while(move->color == 1)
 		{
 			move = begin;
-			while (move->x != terrain->x + i || move->y != terrain->y)
+			while (move->next != 0 && (move->x != terrain->x + i || move->y != terrain->y))
 				move = move->next;
 			count = count + 1;
 			i = i + 1;
@@ -69,7 +73,7 @@ void	left_capture_black(t_terrain* terrain, GtkWidget* button, int count)
 	gdk_color_parse ("black", &black);
 	while (terrain->button != button)
 		terrain = terrain->next;
-	while (move->x != terrain->x - count || move->y != terrain->y)
+	while (move->next != 0 && (move->x != terrain->x - count || move->y != terrain->y))
 		move = move->next;
 	while (count != 0)
 	{

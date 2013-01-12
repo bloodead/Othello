@@ -23,10 +23,8 @@ static void	move(GtkWidget* widget, gpointer data)
 	terrain = game->terrain;
 	while (terrain->button != widget)
 		terrain = terrain->next;
-	printf("BUTTON N %d \n", terrain->i);
 	if (check_case(terrain_all, terrain, game->round))
 	{
-		printf("couleur bouton apres %d\n", terrain->color);
 		if (game->round % 2 == 0)
 		{
 			gtk_label_set_text(GTK_LABEL(game->label), "AU BLANC DE JOUER");
@@ -38,6 +36,7 @@ static void	move(GtkWidget* widget, gpointer data)
 			game->round = game->round + 1;
 		}
 	}
+	refresh_score(game);
 }
 
 int		main(int argc, char** argv)
@@ -48,7 +47,9 @@ int		main(int argc, char** argv)
 	GdkColor        color;
 	
 	gtk_init(&argc, &argv);
-	init_game(&game);
+	if(init_game(&game))
+		return 0;
+	init_score(&game);
 	gdk_color_parse ("brown", &color);
 	gtk_window_set_position(GTK_WINDOW(game.window),GTK_WIN_POS_CENTER); 
 	generate_all_button(game.button, &color);

@@ -3,7 +3,20 @@
 #include <stdlib.h>
 #include "base.h"
 
-void	generate_coord(t_terrain* terrain)
+void	free_terrain(t_terrain*	terrain)
+{
+	t_terrain*	tmp;
+	
+	while (terrain != 0)
+	{
+		tmp = terrain->next;
+		free(terrain);
+		terrain = tmp;
+	}
+	free(terrain);
+}
+
+int	generate_coord(t_terrain* terrain)
 {
 	int	i;
 	int	x;
@@ -17,6 +30,8 @@ void	generate_coord(t_terrain* terrain)
 		while (x != 8)
 		{
 			terrain->next = malloc(sizeof(t_terrain));
+			if (terrain->next == 0)
+				return 1;
 			terrain->i = i;
 			terrain->x = x;
 			terrain->y = y;
@@ -31,4 +46,5 @@ void	generate_coord(t_terrain* terrain)
 		}
 		y = y + 1;
 	}
+	return 0;
 }

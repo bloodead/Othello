@@ -1,6 +1,7 @@
-NAME	=	gtk
+NAME	=	id_reversi
 SRCS	=	main.c				\
 		init.c				\
+		init_score.c			\
 		terrain_coord.c			\
 		horizontal_black.c		\
 		horizontal_white.c		\
@@ -18,12 +19,12 @@ SRCS	=	main.c				\
 
 OBJS	=	$(SRCS:.c=.o)
 LDFLAGS	= `pkg-config --libs gtk+-2.0`
-CFLAGS	= -Wall -W -Werror `pkg-config --cflags gtk+-2.0`
+CFLAGS	= -Wall -W -Werror -g `pkg-config --cflags gtk+-2.0`
 
 all:	$(NAME)
 
 $(NAME):	$(OBJS)
-	gcc -o $(NAME) $(OBJS) $(LDFLAGS)
+	gcc -o $(NAME) $(OBJS) $(LDFLAGS) 
 
 clean:
 	rm -f $(OBJS)

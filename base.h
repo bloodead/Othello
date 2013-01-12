@@ -18,16 +18,20 @@ typedef struct	s_env_game
 	GtkWidget*	label;
 	GtkWidget**	button;
 	GtkWidget**	hbox;
-	GtkWidget*      window;
-	GtkWidget*      vbox;
+	GtkWidget*	window;
+	GtkWidget*	vbox;
 	t_terrain*	terrain;
+	int		score_black;
+	GtkWidget*	button_black;
+	int		score_white;
+	GtkWidget*	button_white;
 	
 }		env_game;
 
 void	assign_button_coord(GtkWidget* widget, t_terrain* terrain, int i);
 void	generated_platform(GtkWidget** hbox, GtkWidget* vbox, GtkWidget** button);
 void	generate_all_button(GtkWidget** button, GdkColor* color);
-void	generate_coord(t_terrain* terrain);
+int	generate_coord(t_terrain* terrain);
 int	found_vertical_black(t_terrain* terrain, GtkWidget* button);
 int	found_vertical_white(t_terrain* terrain, GtkWidget* button);
 int	check_global_black(t_terrain* terrain, t_terrain* button, int count);
@@ -60,5 +64,8 @@ int	check_end_white(t_terrain* move);
 int	found_horizontal_black(t_terrain* terrain, GtkWidget* button);
 int	found_horizontal_white(t_terrain* terrain, GtkWidget* button);
 int	check_case(t_terrain* terrain, t_terrain*  button, int round);
-void    init_game(env_game* game);
+int    init_game(env_game* game);
+void    init_score(env_game* game);
+void    refresh_score(env_game* game);
+void    free_terrain(t_terrain* terrain);
 #endif
