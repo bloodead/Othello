@@ -2,49 +2,54 @@
 #include <stdio.h>
 #include "base.h"
 
-int	found_left_white(t_terrain* terrain, GtkWidget* button)
+int	found_left_white(t_terrain* terrain, GtkWidget* button, int count)
 {
-	int		count;
+	int		i;
 	t_terrain*	move;
 	t_terrain*	begin;
 
-	count = 0;
+	i = 1;
 	begin = terrain;
 	move = begin;
 	while (terrain->button != button)
 		terrain = terrain->next;
 	if (terrain->color == 0 && terrain->x >= 2)
 	{
-		while(move->next != terrain)
+		while(move->next != 0 && (move->x != terrain->x + i || move->y != terrain->y))
 			move = move->next;
 		while(move->color == 2)
 		{
-					move = begin;
-			while (move->x != terrain->x - (1 + count) || move->y != terrain->y)
+			move = begin;
+			while (move->x != terrain->x + i || move->y != terrain->y)
 			{
 				move = move->next;
 				if (move->next == 0)
 					break;
 			}
+			i = i + 1;
 			count = count + 1;
 		}
 	}
 	if (check_end_white(move) == 0)
-		return (-1);
-	return (count - 1);
+		return (0);
+	return (count);
 }
  
-int	found_right_white(t_terrain* terrain, GtkWidget* button)
+int	found_right_white(t_terrain* terrain, GtkWidget* button, int count)
 {
-	int		count;
+	int		i;
+	t_terrqin*	begin;
 	t_terrain*	move;
     
-	count = 0;
+	i = 1;
+	begin = terrain;
+	nove = begin;
 	while (terrain->button != button)
 		terrain = terrain->next;
 	if (terrain->color == 0 && terrain->x <= 5)
 	{
-		move = terrain->next;
+		while(move->next != 0 && (move->x != terrain->x + i || move->y != terrain->y))
+			move = move->next;
 		while(move->color == 2)
 		{
 			move = move->next;
