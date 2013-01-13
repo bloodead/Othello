@@ -6,8 +6,10 @@
 static void	destroy(GtkWidget* widget, gpointer data)
 {
 	(void)	widget;
-	(void)	data;
-
+	struct s_env_game*      game;
+	
+	game = data;
+	free_all(game);
 	gtk_main_quit();
 }
 
@@ -53,7 +55,7 @@ int		main(int argc, char** argv)
 	gdk_color_parse ("brown", &color);
 	gtk_window_set_position(GTK_WINDOW(game.window),GTK_WIN_POS_CENTER); 
 	generate_all_button(game.button, &color);
-	g_signal_connect(game.window, "destroy", G_CALLBACK(destroy),NULL);
+	g_signal_connect(game.window, "destroy", G_CALLBACK(destroy),&game);
 	while (game.i != 64)
 	{
 		g_signal_connect(game.button[game.i], "clicked", G_CALLBACK(move), &game);

@@ -15,12 +15,12 @@ int	found_left_white(t_terrain* terrain, GtkWidget* button, int count)
 		terrain = terrain->next;
 	if (terrain->color == 0 && terrain->x >= 2)
 	{
-		while(move->next != 0 && (move->x != terrain->x + i || move->y != terrain->y))
+		while(move->next != 0 && (move->x != terrain->x - i || move->y != terrain->y))
 			move = move->next;
 		while(move->color == 2)
 		{
 			move = begin;
-			while (move->next != 0 && (move->x != terrain->x + i || move->y != terrain->y))
+			while (move->next != 0 && (move->x != terrain->x - i || move->y != terrain->y))
 				move = move->next;
 			i = i + 1;
 			count = count + 1;
@@ -34,12 +34,12 @@ int	found_left_white(t_terrain* terrain, GtkWidget* button, int count)
 int	found_right_white(t_terrain* terrain, GtkWidget* button, int count)
 {
 	int		i;
-	t_terrqin*	begin;
+	t_terrain*	begin;
 	t_terrain*	move;
     
 	i = 1;
 	begin = terrain;
-	nove = begin;
+	move = begin;
 	while (terrain->button != button)
 		terrain = terrain->next;
 	if (terrain->color == 0 && terrain->x <= 5)
@@ -48,8 +48,11 @@ int	found_right_white(t_terrain* terrain, GtkWidget* button, int count)
 			move = move->next;
 		while(move->color == 2)
 		{
-			move = move->next;
+			move = begin;
+			while (move->next != 0 && (move->x != terrain->x + i || move->y != terrain->y))
+				move = move->next;
 			count = count + 1;
+			i = i + 1;
 		}
 	}
 	if (check_end_white(move) == 0)
@@ -63,10 +66,10 @@ void	left_capture_white(t_terrain* terrain, GtkWidget* button, int count)
 	GdkColor	white;
 
 	move = terrain;
-	gdk_color_parse ("white", &white);
 	while (terrain->button != button)
-	terrain = terrain->next;
-	while (move->next == 0 && (move->x != terrain->x - count || move->y != terrain->y))
+		terrain = terrain->next;
+	printf("DEBUG %d \n",terrain->x);
+	while (move->next != 0 && (move->x != terrain->x - count || move->y != terrain->y))
 		move = move->next;
 	while (count != 0)
 	{
@@ -108,7 +111,7 @@ int	found_horizontal_white(t_terrain* terrain, GtkWidget* button)
 	if (count != 0)
 		right_capture_white(terrain, button, count);
 	count2 = found_left_white(terrain, button,0);
-	if (count2 > 0)
+	if (count2 != 0)
 		left_capture_white(terrain, button, count2);
 	if (count == 0 && count2 == 0)
 		return 0;

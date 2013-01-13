@@ -20,12 +20,8 @@ int	found_left_black(t_terrain* terrain, GtkWidget* button, int count)
 		while(move->color == 1)
 		{
 			move = begin;
-			while (move->x != terrain->x - i || move->y != terrain->y)
-			{
+			while(move->next != 0 && (move->x != terrain->x - i || move->y != terrain->y))
 				move = move->next;
-				if (move->next == 0)
-					break;
-			}
 			count = count + 1;
 			i = i + 1;
 		}

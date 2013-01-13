@@ -68,4 +68,5 @@ int    init_game(env_game* game);
 void    init_score(env_game* game);
 void    refresh_score(env_game* game);
 void    free_terrain(t_terrain* terrain);
+void	free_all(env_game* game);
 #endif

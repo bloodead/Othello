@@ -1,6 +1,7 @@
 NAME	=	id_reversi
 SRCS	=	main.c				\
 		init.c				\
+		free_all.c			\
 		init_score.c			\
 		terrain_coord.c			\
 		horizontal_black.c		\
