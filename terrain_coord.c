@@ -6,7 +6,7 @@
 void	free_terrain(t_terrain*	terrain)
 {
 	t_terrain*	tmp;
-	
+
 	while (terrain != 0)
 	{
 		tmp = terrain->next;
@@ -14,6 +14,18 @@ void	free_terrain(t_terrain*	terrain)
 		terrain = tmp;
 	}
 	free(terrain);
+}
+
+t_terrain*	generate_color(int i, int x, int y, t_terrain* terrain)
+{
+	terrain->i = i;
+	terrain->x = x;
+	terrain->y = y;
+	if (i == 27 || i == 36)
+		terrain->color = 1;
+	if (i == 28 || i == 35)
+		terrain->color = 2;
+	return (terrain);
 }
 
 int	generate_coord(t_terrain* terrain)
@@ -31,20 +43,13 @@ int	generate_coord(t_terrain* terrain)
 		{
 			terrain->next = malloc(sizeof(t_terrain));
 			if (terrain->next == 0)
-				return 1;
-			terrain->i = i;
-			terrain->x = x;
-			terrain->y = y;
-			terrain->color = 0;
-			if (i == 27 || i == 36)
-				terrain->color = 1;
-			if (i == 28 || i == 35)
-				terrain->color = 2;
+				return (1);
+			terrain = generate_color(i, x, y, terrain);
 			terrain = terrain->next;
 			x = x + 1;
 			i = i + 1;
 		}
 		y = y + 1;
 	}
-	return 0;
+	return (0);
 }

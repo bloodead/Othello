@@ -14,8 +14,8 @@ int	found_bot_white(t_terrain* terrain, GtkWidget* button, int count)
 	while (terrain->button != button)
 		terrain = terrain->next;
 	if (terrain->color == 0 && terrain->y <= 5)
-		{
-			while (move->next != 0 && (move->x != terrain->x || move->y != terrain->y + i))
+	{
+		while (move->next != 0 && (move->x != terrain->x || move->y != terrain->y + i))
 			move = move->next;
 		while (move->color == 2)
 		{

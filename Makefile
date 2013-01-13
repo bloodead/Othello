@@ -16,7 +16,7 @@ SRCS	=	main.c				\
 		tools_diagonal_white_bot.c	\
 		check_end_line.c		\
 		check_case.c			\
-		tools_check.c			\
+		tools_check.c
 
 OBJS	=	$(SRCS:.c=.o)
 LDFLAGS	= `pkg-config --libs gtk+-2.0`

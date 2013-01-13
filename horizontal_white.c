@@ -68,7 +68,6 @@ void	left_capture_white(t_terrain* terrain, GtkWidget* button, int count)
 	move = terrain;
 	while (terrain->button != button)
 		terrain = terrain->next;
-	printf("DEBUG %d \n",terrain->x);
 	while (move->next != 0 && (move->x != terrain->x - count || move->y != terrain->y))
 		move = move->next;
 	while (count != 0)

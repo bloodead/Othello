@@ -64,9 +64,9 @@ int	check_end_white(t_terrain* move);
 int	found_horizontal_black(t_terrain* terrain, GtkWidget* button);
 int	found_horizontal_white(t_terrain* terrain, GtkWidget* button);
 int	check_case(t_terrain* terrain, t_terrain*  button, int round);
-int    init_game(env_game* game);
-void    init_score(env_game* game);
-void    refresh_score(env_game* game);
-void    free_terrain(t_terrain* terrain);
+int	init_game(env_game* game);
+void	init_score(env_game* game);
+void	refresh_score(env_game* game);
+void	free_terrain(t_terrain* terrain);
 void	free_all(env_game* game);
 #endif

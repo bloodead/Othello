@@ -26,7 +26,7 @@ char*	convert_int(int i, char* score)
 	score[0] = 48 + (i / 10);
 	score[1] = 48 + (i % 10);
 	score[2] = '\0';
-	return score;
+	return (score);
 }
 
 void	refresh_game(env_game* game)
@@ -34,13 +34,9 @@ void	refresh_game(env_game* game)
 	if (game->round == 60)
 	{
 		if (game->score_black > game->score_white)
-		{
 			gtk_label_set_text(GTK_LABEL(game->label), "BLACK WINNER");
-		}
 		else
-		{
 			gtk_label_set_text(GTK_LABEL(game->label), "WHITE WINNER");
-		}
 	}
 }
 
@@ -62,10 +58,8 @@ void	init_score(env_game* game)
 {
 	game->button_white = gtk_button_new_with_label("0");
 	game->button_black = gtk_button_new_with_label("0");
-
 	game->label = gtk_label_new("COUCOU JOUEUR");
 	gtk_box_pack_start(GTK_BOX(game->hbox[0]), game->button_black, TRUE, TRUE, 0);
 	gtk_box_pack_start(GTK_BOX(game->hbox[0]), game->label, TRUE, TRUE, 0);
 	gtk_box_pack_start(GTK_BOX(game->hbox[0]), game->button_white, TRUE, TRUE, 0);
-	
 }

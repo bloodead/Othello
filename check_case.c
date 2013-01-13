@@ -37,15 +37,11 @@ int	check_case(t_terrain* terrain, t_terrain* button, int round)
 	if (button->color == 0)
 	{
 		if (round % 2 == 0)
-		{
 			count = check_global_black(terrain, button_p, 0);
-		}
 		else if (round % 2 == 1)
-		{
 			count = check_global_white(terrain, button_p, 0);
-		}
-			if (count > 0)
-				return (1);
+		if (count > 0)
+			return (1);
 	}
 	return (0);
 }

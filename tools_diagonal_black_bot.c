@@ -14,10 +14,11 @@ void	capture_left_bot_black(t_terrain* terrain, GtkWidget* button, int count)
 	while (terrain->button != button)
 		terrain = terrain->next;
 	while (count != 0)
-		{
-			while (move->next != 0 && (move->x != terrain->x - count || move->y != terrain->y + count))
+	{
+		while (move->next != 0 && (move->x != terrain->x - count
+		       || move->y != terrain->y + count))
 			move = move->next;
-			gtk_widget_modify_bg(GTK_WIDGET(move->button), GTK_STATE_NORMAL, &black);
+		gtk_widget_modify_bg(GTK_WIDGET(move->button), GTK_STATE_NORMAL, &black);
 		move->color = 2;
 		move = begin;
 		count = count - 1;
@@ -39,7 +40,8 @@ void	capture_right_bot_black(t_terrain* terrain, GtkWidget* button, int count)
 		terrain = terrain->next;
 	while (count != 0)
 	{
-		while (move->next != 0 && (move->x != terrain->x + count || move->y != terrain->y + count))
+		while (move->next != 0 && (move->x != terrain->x + count
+		       || move->y != terrain->y + count))
 			move = move->next;
 		gtk_widget_modify_bg(GTK_WIDGET(move->button), GTK_STATE_NORMAL, &black);
 		move->color = 2;
@@ -58,7 +60,7 @@ int	found_left_bot_black(t_terrain* terrain, GtkWidget* button, int count)
 
 	i = 1;
 	begin = terrain;
-	move = begin;   
+	move = begin;
 	while (terrain->button != button)
 		terrain = terrain->next;
 	if (terrain->color == 0 && terrain->y <= 5 && terrain->x >= 2)
